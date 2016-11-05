@@ -5,9 +5,9 @@ _WireV_ is a WIP generative logo system made with Javascript in HTML's Canvas.
 
 Its functionality is simple. It starts with a base shape, and every 9 seconds, distorts its coordinates randomly for a duration of 0.4 seconds, and then stops. The cycle repeats.
 
-![gif] (http://i.imgur.com/q5znRfO.gif)
+![gif] (https://i.imgur.com/JOxluac.gif)
 
-[LIVE DEMO] (https://vi-victor.github.io/Constellation-JS/)
+[LIVE DEMO] (https://vi-victor.github.io/WireV/)
 
 ## To Do
 
