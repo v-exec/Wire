@@ -1,10 +1,10 @@
 //* Parameters *//
 
 //determines how radically wireV glitches
-var glitchyness = 70;
+var glitchyness = 60;
 
 //determines how radically glitched the final wireV will be once it stops glitching
-var finalGlitchyness = 30;
+var finalGlitchyness = 25;
 
 //determines how often wireV blinks when not glitching (between 0 and 1, the higher, the more likely)
 var blinkyness = 0.02;
@@ -72,7 +72,7 @@ function draw() {
 		logo2.stableGlitchWire();
 		logo3.stableGlitchWire();
 
-		if (getRandomFloat(0, 1) > 1) renderThird = true;
+		if (getRandomFloat(0, 1) > 0.5) renderThird = true;
 		else renderThird = false;
 
 		//stop glitching after 400 millis
@@ -96,7 +96,7 @@ function draw() {
 setInterval(function() {
 	isGlitching = true
 	console.log("GLITCH");
-}, 9000);
+}, 7000);
 
 //on page load, call setup to start animation
 window.addEventListener("DOMContentLoaded", function () {
