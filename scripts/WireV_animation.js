@@ -78,7 +78,6 @@ function draw() {
 		//stop glitching after 400 millis
 		setTimeout(function() {
 			isGlitching = false;
-			console.log("STOP");
 		}, 400);
 
 		//if not glitching, then render WireVs according to blinkyness
@@ -92,10 +91,9 @@ function draw() {
 	window.requestAnimationFrame(draw);
 }
 
-//determines when wireV glitches
+//triggerswireV glitches
 setInterval(function() {
 	isGlitching = true
-	console.log("GLITCH");
 }, 7000);
 
 //on page load, call setup to start animation
