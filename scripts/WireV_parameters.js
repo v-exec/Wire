@@ -7,7 +7,10 @@
 //      \|____________|    \|__|    \|__|\|__|    \|_______|        \|__|/    
 //                                                                             
 
-//----------**SIZE**----------//
+//----------**SETUP**----------//
+
+//repalace usercanvas with your canvas' ID
+var canvas = document.getElementById('userCanvas');
 
 //determines the width of the wireV shape
 var sizeX = 85;
@@ -15,16 +18,12 @@ var sizeX = 85;
 //determines the height of the wireV shape
 var sizeY = 100;
 
-//----------**NUMBER**----------//
-
 //number of rendered WireV objects
 var logoCount = 3;
 
 //chance that the final WireV in the object array doesn't render after glitching (between 0 - 1, the higher, the more likely it is to render)
 //might not render WireV if logoCount = 1 and renderLastChance < 1
 var renderLastChance = 0.5;
-
-//----------**GRID**----------//
 
 //determines whether or not wireV randomization locks into a grid
 var gridLock = true;
@@ -48,3 +47,17 @@ var downTime = 7000;
 
 //determines how often wireV blinks when not glitching (between 0 - 1, the higher, the more blinky)
 var blinkyness = 0.02;
+
+//----------**DON'T TOUCH UNLESS YOU KNOW WHAT YOU'RE DOING**----------//
+
+//set up canvas context
+var ctx = canvas.getContext('2d');
+
+//will hold WireV objects
+var logos = new Array(logoCount);
+
+//determines whether or not to render the last WireV in the array (starts as true to ensure initial visibility)
+var renderLast = true;
+
+//determines whether or not WireV is glitching (starts as false so as to give user a view of the base shape)
+var isGlitching = false;

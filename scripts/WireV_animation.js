@@ -1,26 +1,11 @@
-//references to html elements
-var canvas = document.getElementById('userCanvas');
-var ctx = canvas.getContext('2d');
-
-//will hold WireV objects
-var logos = new Array(logoCount);
-
-//determines whether or not to render the last WireV in the array
-var renderLast = true;
-
-//determines whether or not WireV is glitching
-var isGlitching = false;
-
-//animation setup
+//animation setup, assign WireV objects, set their initial position, and call draw function to start animation loop
 function setup() {
 
-	//assign WireV objects and set initial position
 	for (var i = 0; i < logos.length; i++) {
 		logos[i] = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
 		logos[i].setWire();
 	}
 
-	//call draw function to start animation loop
 	window.requestAnimationFrame(draw);
 }
 
