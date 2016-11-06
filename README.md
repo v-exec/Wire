@@ -1,5 +1,5 @@
 # WireV
-#### Version 0.8
+#### Version 1.0
 
 _WireV_ is a generative logo system made with Javascript in HTML's Canvas.
 
@@ -8,7 +8,3 @@ Its functionality is simple. It starts with a base shape, and every X (7 in the 
 ![gif] (http://i.imgur.com/coKQC9F.gif)
 
 [LIVE DEMO] (https://vi-victor.github.io/WireV/)
-
-## To Do
-
-* Wrap it all into module

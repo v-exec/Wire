@@ -7,57 +7,60 @@
 //      \|____________|    \|__|    \|__|\|__|    \|_______|        \|__|/    
 //                                                                             
 
+//object wrap for WireV
+var V = {};
+
 //----------**SETUP**----------//
 
 //repalace usercanvas with your canvas' ID
-var canvas = document.getElementById('userCanvas');
+V.canvas = document.getElementById('userCanvas');
 
 //determines the width of the wireV shape
-var sizeX = 85;
+V.sizeX = 85;
 
 //determines the height of the wireV shape
-var sizeY = 100;
+V.sizeY = 100;
 
 //number of rendered WireV objects
-var logoCount = 3;
+V.logoCount = 3;
 
 //chance that the final WireV in the object array doesn't render after glitching (between 0 - 1, the higher, the more likely it is to render)
 //might not render WireV if logoCount = 1 and renderLastChance < 1
-var renderLastChance = 0.5;
+V.renderLastChance = 0.5;
 
 //determines whether or not wireV randomization locks into a grid
-var gridLock = true;
+V.gridLock = true;
 
 //determines distance between grid points if gridlocked (make same as sizeX if you wish to have perfectly geometric arrangements)
-var gridSize = 85;
+V.gridSize = 85;
 
 //----------**ANIMATION**----------//
 
 //determines how radically wireV glitches
-var glitchyness = 60;
+V.glitchyness = 60;
 
 //determines how radically glitched the final wireV will be once it stops glitching (must be at least (gridSize * 2 + 1) if wireV is to change after glitching)
-var finalGlitchyness = 50;
+V.finalGlitchyness = 50;
 
 //determines amount of time that it takes wireV to stop glitching in millis (the duration of the glitch, essentially)
-var glitchTime = 400;
+V.glitchTime = 400;
 
 //determines amount of time spent not glitching in millis (calculated from the point where wireV begins glitching)
-var downTime = 7000;
+V.downTime = 7000;
 
 //determines how often wireV blinks when not glitching (between 0 - 1, the higher, the more blinky)
-var blinkyness = 0.02;
+V.blinkyness = 0.02;
 
 //----------**DON'T TOUCH UNLESS YOU KNOW WHAT YOU'RE DOING**----------//
 
 //set up canvas context
-var ctx = canvas.getContext('2d');
+V.ctx = V.canvas.getContext('2d');
 
 //will hold WireV objects
-var logos = new Array(logoCount);
+V.logos = new Array(V.logoCount);
 
 //determines whether or not to render the last WireV in the array (starts as true to ensure initial visibility)
-var renderLast = true;
+V.renderLast = true;
 
 //determines whether or not WireV is glitching (starts as false so as to give user a view of the base shape)
-var isGlitching = false;
+V.isGlitching = false;

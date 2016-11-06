@@ -8,7 +8,7 @@ function getRandomDisplacement(min, max) {
 	var temp = Math.random() * (max - min) + min;
 	
 	//round to gridSize
-	if (gridLock) return Math.round(temp / gridSize) * gridSize;
+	if (V.gridLock) return Math.round(temp / V.gridSize) * V.gridSize;
 	else return temp;
 }
 
@@ -49,21 +49,21 @@ function WireV(newX, newY, newSizeX, newSizeY, newGlitchAmount, newStableGlitchA
 
 	//draws shape
 	this.drawWire = function() {
-		ctx.beginPath();
+		V.ctx.beginPath();
 
-		ctx.lineCap = 'round';
-		ctx.lineJoin = 'round';
-		ctx.lineWidth = 2;
-		ctx.strokeStyle = "rgba(255, 255, 255, 1)";
+		V.ctx.lineCap = 'round';
+		V.ctx.lineJoin = 'round';
+		V.ctx.lineWidth = 2;
+		V.ctx.strokeStyle = "rgba(255, 255, 255, 1)";
 
-		ctx.moveTo(this.coords[0], this.coords[1]);
-		ctx.lineTo(this.coords[2], this.coords[3]);
-		ctx.lineTo(this.coords[4], this.coords[5]);
-		ctx.lineTo(this.coords[6], this.coords[7]);
-		ctx.lineTo(this.coords[0], this.coords[1]);
+		V.ctx.moveTo(this.coords[0], this.coords[1]);
+		V.ctx.lineTo(this.coords[2], this.coords[3]);
+		V.ctx.lineTo(this.coords[4], this.coords[5]);
+		V.ctx.lineTo(this.coords[6], this.coords[7]);
+		V.ctx.lineTo(this.coords[0], this.coords[1]);
 
-		ctx.closePath();
-		ctx.stroke();
+		V.ctx.closePath();
+		V.ctx.stroke();
 	}
 
 	//randomizes shape points drastically
