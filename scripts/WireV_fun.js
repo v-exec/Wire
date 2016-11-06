@@ -41,14 +41,19 @@ function WireV(newX, newY, newSizeX, newSizeY, newGlitchAmount, newStableGlitchA
 	//draws shape
 	this.drawWire = function() {
 		ctx.beginPath();
+
+		ctx.lineCap = 'round';
+		ctx.lineJoin = 'round';
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "rgba(255, 255, 255, 1)";
+
 		ctx.moveTo(this.dotTopLeftX, this.dotTopLeftY);
 		ctx.lineTo(this.dotTopMiddleX, this.dotTopMiddleY);
 		ctx.lineTo(this.dotTopRightX, this.dotTopRightY);
 		ctx.lineTo(this.dotBottomMiddleX, this.dotBottomMiddleY);
 		ctx.lineTo(this.dotTopLeftX, this.dotTopLeftY);
 
-		ctx.lineWidth = 2;
-		ctx.strokeStyle = "rgba(255, 255, 255, 1)";
+		ctx.closePath();
 		ctx.stroke();
 	}
 
