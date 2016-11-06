@@ -1,16 +1,3 @@
-//* Parameters *//
-
-//determines how radically wireV glitches
-var glitchyness = 60;
-
-//determines how radically glitched the final wireV will be once it stops glitching
-var finalGlitchyness = 25;
-
-//determines how often wireV blinks when not glitching (between 0 and 1, the higher, the more likely)
-var blinkyness = 0.02;
-
-// ** ///
-
 //references to html elements
 var canvas = document.getElementById('userCanvas');
 var ctx = canvas.getContext('2d');
@@ -30,9 +17,9 @@ var isGlitching = false;
 function setup() {
 
 	//assign WireV objects
-	logo1 = new WireV(200, 200, 85, 100, glitchyness, finalGlitchyness);
-	logo2 = new WireV(200, 200, 85, 100, glitchyness, finalGlitchyness);
-	logo3 = new WireV(200, 200, 85, 100, glitchyness, finalGlitchyness);
+	logo1 = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
+	logo2 = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
+	logo3 = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
 
 	logo1.setWire();
 	logo2.setWire();
@@ -78,7 +65,7 @@ function draw() {
 		//stop glitching after 400 millis
 		setTimeout(function() {
 			isGlitching = false;
-		}, 400);
+		}, glitchTime);
 
 		//if not glitching, then render WireVs according to blinkyness
 	} else {
@@ -94,7 +81,7 @@ function draw() {
 //triggerswireV glitches
 setInterval(function() {
 	isGlitching = true
-}, 7000);
+}, downTime);
 
 //on page load, call setup to start animation
 window.addEventListener("DOMContentLoaded", function () {

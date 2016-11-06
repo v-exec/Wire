@@ -1,9 +1,9 @@
 # WireV
-#### Version 0.6
+#### Version 0.7
 
-_WireV_ is a WIP generative logo system made with Javascript in HTML's Canvas.
+_WireV_ is a generative logo system made with Javascript in HTML's Canvas.
 
-Its functionality is simple. It starts with a base shape, and every 7 seconds, distorts its coordinates randomly for a duration of 0.4 seconds, and then stops. The cycle repeats.
+Its functionality is simple. It starts with a base shape, and every 7 seconds, distorts its coordinates randomly (with the option to lock to grid) for a duration of 0.4 seconds, and then stops. The cycle repeats.
 
 ![gif] (https://i.imgur.com/JOxluac.gif)
 
