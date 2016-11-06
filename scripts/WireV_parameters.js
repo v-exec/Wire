@@ -12,7 +12,7 @@ var sizeY = 100;
 var gridLock = true;
 
 //determines distance between grid points if gridlocked
-var gridSize = 45;
+var gridSize = 70;
 
 
 //**GLITCH**//
@@ -21,7 +21,7 @@ var gridSize = 45;
 var glitchyness = 60;
 
 //determines how radically glitched the final wireV will be once it stops glitching (must be at least 2x + 1 gridSize if wireV is to change after glitching)
-var finalGlitchyness = 25;
+var finalGlitchyness = 40;
 
 //determines amount of time that it takes wireV to stop glitching in millis (the duration of the glitch, basically)
 var glitchTime = 400;
