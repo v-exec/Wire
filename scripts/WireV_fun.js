@@ -23,19 +23,28 @@ function WireV(newX, newY, newSizeX, newSizeY, newGlitchAmount, newStableGlitchA
 	this.glitchAmount = newGlitchAmount;
 	this.stableGlitchAmount = newStableGlitchAmount;
 
+	//number of points in drawn shape
+	this.shapePoints = 4;
+	//array size * 2 for holding both X and Y values of shape coordinates
+	this.coords = new Array(this.shapePoints * 2);
+
 	//sets lines to base shape
 	this.setWire = function() {
-		this.dotTopMiddleX = this.X;
-		this.dotTopMiddleY = this.Y - this.sizeY / 2;
+		//top left coordinate
+		this.coords[0] = this.X - this.sizeX;
+		this.coords[1] = this.Y - this.sizeY;
 
-		this.dotTopLeftX = this.X - this.sizeX;
-		this.dotTopLeftY = this.Y - this.sizeY;
+		//top middle coordinate
+		this.coords[2] = this.X;
+		this.coords[3] = this.Y - this.sizeY / 2;
 
-		this.dotTopRightX = this.X + this.sizeX;
-		this.dotTopRightY = this.Y - this.sizeY;
+		//top right coordinate
+		this.coords[4] = this.X + this.sizeX;
+		this.coords[5] = this.Y - this.sizeY;
 
-		this.dotBottomMiddleX = this.X;
-		this.dotBottomMiddleY = this.Y + this.sizeY;
+		//bottom middle coordinate
+		this.coords[6] = this.X;
+		this.coords[7] = this.Y + this.sizeY;
 	}
 
 	//draws shape
@@ -47,11 +56,11 @@ function WireV(newX, newY, newSizeX, newSizeY, newGlitchAmount, newStableGlitchA
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = "rgba(255, 255, 255, 1)";
 
-		ctx.moveTo(this.dotTopLeftX, this.dotTopLeftY);
-		ctx.lineTo(this.dotTopMiddleX, this.dotTopMiddleY);
-		ctx.lineTo(this.dotTopRightX, this.dotTopRightY);
-		ctx.lineTo(this.dotBottomMiddleX, this.dotBottomMiddleY);
-		ctx.lineTo(this.dotTopLeftX, this.dotTopLeftY);
+		ctx.moveTo(this.coords[0], this.coords[1]);
+		ctx.lineTo(this.coords[2], this.coords[3]);
+		ctx.lineTo(this.coords[4], this.coords[5]);
+		ctx.lineTo(this.coords[6], this.coords[7]);
+		ctx.lineTo(this.coords[0], this.coords[1]);
 
 		ctx.closePath();
 		ctx.stroke();
@@ -59,31 +68,15 @@ function WireV(newX, newY, newSizeX, newSizeY, newGlitchAmount, newStableGlitchA
 
 	//randomizes shape points drastically
 	this.glitchWire = function() {
-		this.dotTopMiddleX += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
-		this.dotTopMiddleY += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
-
-		this.dotTopLeftX += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
-		this.dotTopLeftY += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
-
-		this.dotTopRightX += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
-		this.dotTopRightY += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
-
-		this.dotBottomMiddleX += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
-		this.dotBottomMiddleY += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
+		for (var i = 0; i < this.coords.length; i++) {
+			this.coords[i] += getRandomDisplacement(-this.glitchAmount, this.glitchAmount);
+		}
 	}
 
 	//randomizes shape points more subtly
 	this.stableGlitchWire = function() {
-		this.dotTopMiddleX += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
-		this.dotTopMiddleY += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
-
-		this.dotTopLeftX += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
-		this.dotTopLeftY += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
-
-		this.dotTopRightX += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
-		this.dotTopRightY += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
-
-		this.dotBottomMiddleX += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
-		this.dotBottomMiddleY += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
+		for (var i = 0; i < this.coords.length; i++) {
+			this.coords[i] += getRandomDisplacement(-this.stableGlitchAmount, this.stableGlitchAmount);
+		}
 	}
 }

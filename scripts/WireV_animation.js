@@ -3,12 +3,10 @@ var canvas = document.getElementById('userCanvas');
 var ctx = canvas.getContext('2d');
 
 //will hold WireV objects
-var logo1;
-var logo2;
-var logo3;
+var logos = new Array(logoCount);
 
-//determines whether or not to render the third WireV
-var renderThird = false;
+//determines whether or not to render the last WireV in the array
+var renderLast = true;
 
 //determines whether or not WireV is glitching
 var isGlitching = false;
@@ -16,14 +14,11 @@ var isGlitching = false;
 //animation setup
 function setup() {
 
-	//assign WireV objects
-	logo1 = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
-	logo2 = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
-	logo3 = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
-
-	logo1.setWire();
-	logo2.setWire();
-	logo3.setWire();
+	//assign WireV objects and set initial position
+	for (var i = 0; i < logos.length; i++) {
+		logos[i] = new WireV(canvas.width/2, canvas.height/2, sizeX, sizeY, glitchyness, finalGlitchyness);
+		logos[i].setWire();
+	}
 
 	//call draw function to start animation loop
 	window.requestAnimationFrame(draw);
@@ -39,28 +34,19 @@ function draw() {
 	//rest it once more for a more stable glitching (in case glitching is about to end and we want the final WireV to be a bit more tamed)
 	//randomly decide if third WireV will be visible
 	if (isGlitching) {
-		logo1.setWire();
-		logo2.setWire();
-		logo3.setWire();
+		for (var i = 0; i < logos.length; i++) {
+			logos[i].setWire();
+			logos[i].glitchWire();
+			logos[i].drawWire();
+		}
 
-		logo1.glitchWire();
-		logo2.glitchWire();
-		logo3.glitchWire();
+		for (var i = 0; i < logos.length; i++) {
+			logos[i].setWire();
+			logos[i].stableGlitchWire();
+		}
 
-		logo1.drawWire();
-		logo2.drawWire();
-		logo3.drawWire();
-
-		logo1.setWire();
-		logo2.setWire();
-		logo3.setWire();
-
-		logo1.stableGlitchWire();
-		logo2.stableGlitchWire();
-		logo3.stableGlitchWire();
-
-		if (getRandomFloat(0, 1) > 0.5) renderThird = true;
-		else renderThird = false;
+		if (getRandomFloat(0, 1) <= renderLastChance) renderThird = true;
+		else renderLast = false;
 
 		//stop glitching after 400 millis
 		setTimeout(function() {
@@ -69,16 +55,21 @@ function draw() {
 
 		//if not glitching, then render WireVs according to blinkyness
 	} else {
-		if (getRandomFloat(0, 1) > blinkyness) logo1.drawWire();
-		if (getRandomFloat(0, 1) > blinkyness) logo2.drawWire();
-		if (renderThird && getRandomFloat(0, 1) > blinkyness) logo3.drawWire();
+
+		//render all WireVs except for last one
+		for (var i = 0; i < logos.length - 1; i++) {
+			if (getRandomFloat(0, 1) > blinkyness) logos[i].drawWire();
+		}
+
+		//if renderLast ended up being true, then draw last WireV
+		if (renderLast && getRandomFloat(0, 1) > blinkyness) logos[logoCount-1].drawWire();
 	}
 
 	//loop animation
 	window.requestAnimationFrame(draw);
 }
 
-//triggerswireV glitches
+//triggers WireV glitches
 setInterval(function() {
 	isGlitching = true
 }, downTime);
