@@ -12,7 +12,7 @@ var V = {};
 
 //----------**SETUP**----------//
 
-//repalace usercanvas with your canvas' ID
+//canvas ID
 V.canvas = document.getElementById('userCanvas');
 
 //determines the width of the wireV shape
@@ -31,15 +31,20 @@ V.renderLastChance = 0.5;
 //determines whether or not wireV randomization locks into a grid
 V.gridLock = true;
 
-//determines distance between grid points if gridlocked (make same as sizeX if you wish to have perfectly geometric arrangements)
+//determines distance between grid points if gridlocked (make gridSize = sizeX for perfectly geometric arrangements)
 V.gridSize = 85;
+
+//colors
+V.colorR = 0;
+V.colorG = 0;
+V.colorB = 0;
 
 //----------**ANIMATION**----------//
 
 //determines how radically wireV glitches
 V.glitchyness = 60;
 
-//determines how radically glitched the final wireV will be once it stops glitching (must be at least (gridSize * 2 + 1) if wireV is to change after glitching)
+//determines how radically glitched the final wireV will be once it stops glitching (must be at least (gridSize / 2 + 1) if wireV is to change after glitching)
 V.finalGlitchyness = 50;
 
 //determines amount of time that it takes wireV to stop glitching in millis (the duration of the glitch, essentially)
@@ -51,7 +56,7 @@ V.downTime = 7000;
 //determines how often wireV blinks when not glitching (between 0 - 1, the higher, the more blinky)
 V.blinkyness = 0.02;
 
-//----------**DON'T TOUCH UNLESS YOU KNOW WHAT YOU'RE DOING**----------//
+//----------**NO TOUCHY**----------//
 
 //set up canvas context
 V.ctx = V.canvas.getContext('2d');

@@ -54,7 +54,7 @@ function WireV(newX, newY, newSizeX, newSizeY, newGlitchAmount, newStableGlitchA
 		V.ctx.lineCap = 'round';
 		V.ctx.lineJoin = 'round';
 		V.ctx.lineWidth = 2;
-		V.ctx.strokeStyle = "rgba(255, 255, 255, 1)";
+		V.ctx.strokeStyle = "rgba(" + V.colorR + ", " + V.colorG + ", " + V.colorB + ", 1)";
 
 		V.ctx.moveTo(this.coords[0], this.coords[1]);
 		V.ctx.lineTo(this.coords[2], this.coords[3]);

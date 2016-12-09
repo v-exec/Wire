@@ -15,22 +15,23 @@ function draw() {
 	//clear canvas for next frame
 	V.ctx.clearRect(0, 0, V.canvas.width, V.canvas.height);
 
-	//if glitching, reset shape, glitch it, and draw it
-	//rest it once more for a more stable glitching (in case glitching is about to end and we want the final WireV to be a bit more tamed)
-	//randomly decide if third WireV will be visible
+	//glitch
 	if (V.isGlitching) {
+		//reset shape, glitch it, and draw it
 		for (var i = 0; i < V.logos.length; i++) {
 			V.logos[i].setWire();
 			V.logos[i].glitchWire();
 			V.logos[i].drawWire();
 		}
 
+		//reset it once more for a more stable glitching (in case glitching is about to end and we want the final WireV to be a bit more tamed)
 		for (var i = 0; i < V.logos.length; i++) {
 			V.logos[i].setWire();
 			V.logos[i].stableGlitchWire();
 		}
 
-		if (getRandomFloat(0, 1) <= V.renderLastChance) V.renderThird = true;
+		//randomly decide if third WireV will be visible
+		if (getRandomFloat(0, 1) <= V.renderLastChance) V.renderLast = true;
 		else V.renderLast = false;
 
 		//stop glitching after 400 millis
@@ -38,18 +39,17 @@ function draw() {
 			V.isGlitching = false;
 		}, V.glitchTime);
 
-		//if not glitching, then render WireVs according to blinkyness
+		//else, render WireVs with blinkyness
 	} else {
-
 		//render all WireVs except for last one
 		for (var i = 0; i < V.logos.length - 1; i++) {
 			if (getRandomFloat(0, 1) > V.blinkyness) V.logos[i].drawWire();
+			
 		}
-
 		//if renderLast ended up being true, then draw last WireV
 		if (V.renderLast && getRandomFloat(0, 1) > V.blinkyness) V.logos[V.logoCount-1].drawWire();
 	}
-
+	
 	//loop animation
 	window.requestAnimationFrame(draw);
 }
