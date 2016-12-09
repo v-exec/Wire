@@ -1,5 +1,5 @@
 # WireV
-#### Version 1.0
+#### Version 1.1
 
 _WireV_ is a generative logo system made with Javascript in HTML's Canvas.
 
