@@ -7,4 +7,4 @@ Its functionality is simple. It starts with a base shape, and every X (7 in the 
 
 ![gif] (http://i.imgur.com/coKQC9F.gif)
 
-[LIVE DEMO] (https://vi-victor.github.io/WireV/)
+[Live demo and info found here] (http://v-os.ca/wirev)
