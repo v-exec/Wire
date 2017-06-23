@@ -1,8 +1,8 @@
-//animation setup, assign WireV objects, set their initial position, and call draw function to start animation loop
+//animation setup, assign Wire objects, set their initial position, and call draw function to start animation loop
 function setup() {
 
 	for (var i = 0; i < V.logos.length; i++) {
-		V.logos[i] = new WireV(V.canvas.width/2, V.canvas.height/2, V.sizeX, V.sizeY, V.glitchyness, V.finalGlitchyness);
+		V.logos[i] = new Wire(V.canvas.width/2, V.canvas.height/2, V.sizeX, V.sizeY, V.glitchyness, V.finalGlitchyness);
 		V.logos[i].setWire();
 	}
 
@@ -24,13 +24,13 @@ function draw() {
 			V.logos[i].drawWire();
 		}
 
-		//reset it once more for a more stable glitching (in case glitching is about to end and we want the final WireV to be a bit more tamed)
+		//reset it once more for a more stable glitching (in case glitching is about to end and we want the final Wire to be a bit more tamed)
 		for (var i = 0; i < V.logos.length; i++) {
 			V.logos[i].setWire();
 			V.logos[i].stableGlitchWire();
 		}
 
-		//randomly decide if third WireV will be visible
+		//randomly decide if third Wire will be visible
 		if (getRandomFloat(0, 1) <= V.renderLastChance) V.renderLast = true;
 		else V.renderLast = false;
 
@@ -39,14 +39,14 @@ function draw() {
 			V.isGlitching = false;
 		}, V.glitchTime);
 
-		//else, render WireVs with blinkyness
+		//else, render Wires with blinkyness
 	} else {
-		//render all WireVs except for last one
+		//render all Wires except for last one
 		for (var i = 0; i < V.logos.length - 1; i++) {
 			if (getRandomFloat(0, 1) > V.blinkyness) V.logos[i].drawWire();
 			
 		}
-		//if renderLast ended up being true, then draw last WireV
+		//if renderLast ended up being true, then draw last Wire
 		if (V.renderLast && getRandomFloat(0, 1) > V.blinkyness) V.logos[V.logoCount-1].drawWire();
 	}
 	
@@ -54,7 +54,7 @@ function draw() {
 	window.requestAnimationFrame(draw);
 }
 
-//triggers WireV glitches
+//triggers Wire glitches
 setInterval(function() {
 	V.isGlitching = true
 }, V.downTime);
